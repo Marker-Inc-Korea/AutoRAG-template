@@ -11,9 +11,11 @@ data_path = os.path.join(root_path, 'data')
 @click.option('--config', type=click.Path(exists=True))
 @click.option('--qa_data_path', type=click.Path(exists=True), default=os.path.join(data_path, 'qa.parquet'))
 @click.option('--corpus_data_path', type=click.Path(exists=True), default=os.path.join(data_path, 'corpus.parquet'))
-def main(config):
-    evaluator = Evaluator(qa_data_path=os.path.join(data_path, 'qa_test.parquet'),
-                          corpus_data_path=os.path.join(data_path, 'corpus.parquet'))
+@click.option('--project_dir', type=click.Path(exists=True), default=os.path.join(root_path, 'benchmark'))
+def main(config, qa_data_path, corpus_data_path, project_dir):
+    if not os.path.exists(project_dir):
+        os.makedirs(project_dir)
+    evaluator = Evaluator(qa_data_path, corpus_data_path, project_dir=project_dir)
     evaluator.start_trial(config)
 
 
