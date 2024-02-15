@@ -11,7 +11,8 @@ pip install -r requirements.txt
 # Running the project
 
 1. Download dataset to data folder.
-2. Run evaluator with the following command.
+2. Make `.env` file using `.env.template` file.
+3. Run evaluator with the following command.
 ```bash
 python main.py --config /path/to/config.yaml
 ```
